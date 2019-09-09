@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\Module\Setup;
+namespace Advox\Employees\Setup;
 
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -9,15 +9,10 @@ use Psr\Log\LoggerInterface;
 
 class InstallSchema implements InstallSchemaInterface
 {
-    /**
-     *
-     * @var LoggerInterface
-     */
+    /** @var LoggerInterface */
     private $logger;
 
-    /**
-     * @var SchemaSetupInterface
-     */
+    /** @var SchemaSetupInterface */
     private $setup;
 
     public function __construct(LoggerInterface $logger)

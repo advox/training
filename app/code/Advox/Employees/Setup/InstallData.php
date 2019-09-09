@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\Module\Setup;
+namespace Advox\Employees\Setup;
 
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -9,14 +9,10 @@ use Psr\Log\LoggerInterface;
 
 class InstallData implements InstallDataInterface
 {
-    /**
-     * @var LoggerInterface
-     */
+    /** @var LoggerInterface */
     private $logger;
 
-    /**
-     * @var ModuleDataSetupInterface
-     */
+    /** @var ModuleDataSetupInterface */
     private $setup;
 
     public function __construct(LoggerInterface $logger)
