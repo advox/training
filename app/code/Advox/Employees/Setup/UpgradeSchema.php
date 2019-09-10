@@ -2,7 +2,7 @@
 
 namespace Advox\Employees\Setup;
 
-use Advox\Employees\Setup\Api\Data\EmployeeInterface;
+use Advox\Employees\Api\Data\EmployeeInterface;
 use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\ModuleContextInterface;

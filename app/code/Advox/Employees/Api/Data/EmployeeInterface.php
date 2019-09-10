@@ -1,6 +1,6 @@
 <?php
 
-namespace Advox\Employees\Setup\Api\Data;
+namespace Advox\Employees\Api\Data;
 
 interface EmployeeInterface
 {
@@ -20,11 +20,15 @@ interface EmployeeInterface
 
     public function getId();
 
-    public function setId($id);
-
     public function getName(): string;
+
+    public function getPesel(): string;
 
     public function getPosition(): string;
 
     public function setName(string $name): EmployeeInterface;
+
+    public function setPosition(string $position): EmployeeInterface;
+
+    public function setPesel(string $pesel): EmployeeInterface;
 }
