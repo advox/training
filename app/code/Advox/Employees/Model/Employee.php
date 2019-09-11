@@ -2,10 +2,9 @@
 
 namespace Advox\Employees\Model;
 
-use Magento\Framework\Model\AbstractModel;
-use Advox\Employees\Model\ResourceModel\Employee as ResourceModel;
 use Advox\Employees\Api\Data\EmployeeInterface;
-
+use Advox\Employees\Model\ResourceModel\Employee as ResourceModel;
+use Magento\Framework\Model\AbstractModel;
 
 class Employee extends AbstractModel implements EmployeeInterface
 {
@@ -36,11 +35,21 @@ class Employee extends AbstractModel implements EmployeeInterface
 
     public function setPosition(string $position): EmployeeInterface
     {
-        return $this->setData(EmployeeInterface::NAME, $position);
+        return $this->setData(EmployeeInterface::POSITION, $position);
     }
 
     public function setPesel(string $pesel): EmployeeInterface
     {
-        return $this->setData(EmployeeInterface::NAME, $pesel);
+        return $this->setData(EmployeeInterface::PESEL, $pesel);
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->_getData(EmployeeInterface::CREATED_AT);
+    }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->_getData(EmployeeInterface::UPDATED_AT);
     }
 }

@@ -33,7 +33,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
             if (version_compare($context->getVersion(), '1.1.0', '<')) {
                 $this->upgrade110();
             }
-        } catch (\Exception | Zend_Db_Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
         } finally {
             $this->setup->endSetup();
@@ -42,10 +42,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
     private function upgrade110(): void
     {
-        $connection = $this->getConnection();
-
+        /** @var AdapterInterface $connection */
+        $connection = $this->setup->getConnection();
         $tableName = $this->setup->getTable(EmployeeInterface::TABLE_NAME);
-
 
         /** @var Table $table */
         $table = $connection->newTable($tableName)
@@ -53,108 +52,63 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 EmployeeInterface::ID,
                 Table::TYPE_INTEGER,
                 null,
-
                 [
-
                     'identity' => true,
-
                     'nullable' => false,
-
                     'primary' => true,
-
                     'unsigned' => true,
-
                 ],
-
                 'ID'
             )
             ->addColumn(
                 EmployeeInterface::NAME,
                 Table::TYPE_TEXT,
-
                 64,
-
                 [
-
                     'nullable' => false,
-
                 ],
-
                 'Name'
                 )
             ->addColumn(
                 EmployeeInterface::POSITION,
                 Table::TYPE_TEXT,
-
                 64,
-
                 [
-
                     'nullable' => false,
-
                 ],
-
-                'POSITION'
+                'Position'
             )
             ->addColumn(
                 EmployeeInterface::PESEL,
                 Table::TYPE_TEXT,
-
                 11,
-
                 [
-
                     'nullable' => false,
-
                 ],
-
-                'POSITION'
+                'Pesel'
             )
             ->addColumn(
-
                 EmployeeInterface::CREATED_AT,
-
                 Table::TYPE_TIMESTAMP,
-
                 null,
-
                 [
-
                     'default' => TABLE::TIMESTAMP_INIT,
-
                     'nullable' => false,
-
                 ],
-
                 'Created At'
-
             )
-
             ->addColumn(
 
                 EmployeeInterface::UPDATED_AT,
-
                 Table::TYPE_TIMESTAMP,
-
                 null,
-
                 [
-
                     'default' => Table::TIMESTAMP_INIT_UPDATE,
-
                     'nullable' => false,
-
                 ],
-
                 'Updated At'
-
             );
 
         $connection->createTable($table);
-    }
-
-    private function getConnection(): AdapterInterface
-    {
-        return $this->setup->getConnection();
     }
 }

@@ -31,4 +31,8 @@ interface EmployeeInterface
     public function setPosition(string $position): EmployeeInterface;
 
     public function setPesel(string $pesel): EmployeeInterface;
+
+    public function getCreatedAt(): string;
+
+    public function getUpdatedAt(): string;
 }
