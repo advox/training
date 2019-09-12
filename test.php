@@ -20,7 +20,7 @@ $state = $obj->get(\Magento\Framework\App\State::class);
 $state->setAreaCode(\Magento\Framework\App\Area::AREA_FRONTEND);
 
 /** @var EmployeeRepositoryInterface $repo */
-$repo = $obj->get('Advox\Employees\Model\EmployeeRepository');
+$repo = $obj->get('Advox\Employees\Api\EmployeeRepositoryInterface');
 
 
 $employeeFactory = $obj->get(EmployeeInterfaceFactory::class);

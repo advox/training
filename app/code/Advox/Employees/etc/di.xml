@@ -4,6 +4,9 @@
     <preference for="Advox\Employees\Api\Data\EmployeeInterface"
                 type="Advox\Employees\Model\Employee"/>
 
+    <preference for="Advox\Employees\Api\EmployeeRepositoryInterface"
+                type="Advox\Employees\Model\EmployeeRepository"/>
+
     <preference for="Advox\Employees\Api\Data\EmployeeSearchResultsInterface"
                 type="Magento\Framework\Api\SearchResults" />
 </config>

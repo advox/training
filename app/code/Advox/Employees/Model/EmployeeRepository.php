@@ -8,6 +8,7 @@ use Advox\Employees\Api\Data\EmployeeSearchResultsInterfaceFactory;
 use Advox\Employees\Api\EmployeeRepositoryInterface;
 use Advox\Employees\Model\ResourceModel\Employee as EmployeeResourceModel;
 use Advox\Employees\Model\ResourceModel\Employee\CollectionFactory;
+use Exception;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResults;
@@ -44,31 +45,46 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $this->employeeSearchResultsFactory = $employeeSearchResults;
     }
 
+    /**
+     * @param EmployeeInterface $employee
+     *
+     * @return EmployeeInterface
+     * @throws NoSuchEntityException
+     */
     public function save(EmployeeInterface $employee): EmployeeInterface
     {
         try {
             $this->employeeResourceModel->save($employee);
-        } catch (\Exception $e) {
-            throw new \Exception(__('An error occurred while saving Employee.'));
+        } catch (Exception $e) {
+            throw new Exception(__('An error occurred while saving Employee.'));
         }
 
         return $this->getById($employee->getId());
     }
 
+    /**
+     * @param EmployeeInterface $employee
+     *
+     * @return bool
+     * @throws Exception
+     */
     public function delete(EmployeeInterface $employee): bool
     {
         try {
             $this->employeeResourceModel->delete($employee);
-        } catch (\Exception $e) {
-            throw new \Magento\Framework\Exception\StateException(
-                __('The "%1" product couldn\'t be removed.'),
-                $e
-            );
+        } catch (Exception $e) {
+            throw new Exception(__('An error occurred while deleting Employee.'));
         }
 
         return true;
     }
 
+    /**
+     * @param int $employeeId
+     *
+     * @return EmployeeInterface
+     * @throws NoSuchEntityException
+     */
     public function getById(int $employeeId): EmployeeInterface
     {
         $employee = $this->employeeInterfaceFactory->create();
@@ -82,12 +98,25 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         return $employee;
     }
 
+    /**
+     * @param int $employeeId
+     *
+     * @return bool
+     * @throws NoSuchEntityException
+     */
     public function deleteById(int $employeeId): bool
     {
+        /** @var EmployeeInterface $employee */
         $employee = $this->getById($employeeId);
+        
         return $this->delete($employee);
     }
 
+    /**
+     * @param SearchCriteriaInterface $searchCriteria
+     *
+     * @return SearchResults
+     */
     public function getList(SearchCriteriaInterface $searchCriteria): SearchResults
     {
         /** @var CollectionFactory $collection */
