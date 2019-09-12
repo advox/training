@@ -1,4 +1,5 @@
 <?php
+
 namespace Advox\Employees\Api;
 
 use Advox\Employees\Api\Data\EmployeeInterface;
@@ -7,7 +8,6 @@ use Magento\Framework\Api\SearchResults;
 
 interface EmployeeRepositoryInterface
 {
-
     public function save(EmployeeInterface $page): EmployeeInterface;
 
     public function delete(EmployeeInterface $page): bool;
@@ -17,10 +17,4 @@ interface EmployeeRepositoryInterface
     public function getById(int $employeeId): EmployeeInterface;
 
     public function getList(SearchCriteriaInterface $searchCriteria): SearchResults;
-
-    //public function getById($pageId);
-
-    //public function delete(\Magento\Cms\Api\Data\PageInterface $page);
-
-    //public function deleteById($pageId);
 }

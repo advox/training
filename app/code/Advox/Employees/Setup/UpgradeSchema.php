@@ -31,7 +31,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $this->setup->startSetup();
 
             if (version_compare($context->getVersion(), '1.0.1', '<')) {
-                $this->upgrade110();
+                $this->upgrade101();
             }
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
@@ -40,7 +40,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
         }
     }
 
-    private function upgrade110(): void
+    private function upgrade101(): void
     {
         /** @var AdapterInterface $connection */
         $connection = $this->setup->getConnection();

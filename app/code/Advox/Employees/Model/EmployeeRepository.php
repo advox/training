@@ -6,47 +6,39 @@ use Advox\Employees\Api\Data\EmployeeInterface;
 use Advox\Employees\Api\Data\EmployeeInterfaceFactory;
 use Advox\Employees\Api\Data\EmployeeSearchResultsInterfaceFactory;
 use Advox\Employees\Api\EmployeeRepositoryInterface;
-use Advox\Employees\Model\ResourceModel\Employee\CollectionFactory;
 use Advox\Employees\Model\ResourceModel\Employee as EmployeeResourceModel;
+use Advox\Employees\Model\ResourceModel\Employee\CollectionFactory;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResults;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
 
 class EmployeeRepository implements EmployeeRepositoryInterface
 {
-    /**
-     * @var EmployeeResourceModel
-     */
+    /** @var EmployeeResourceModel */
     private $employeeResourceModel;
-    /**
-     * @var EmployeeInterfaceFactory
-     */
+
+    /** @var EmployeeInterfaceFactory */
     private $employeeInterfaceFactory;
-    /**
-     * @var CollectionFactory
-     */
+
+    /** @var CollectionFactory */
     private $collectionFactory;
-    /**
-     * @var CollectionProcessor
-     */
+
+    /** @var CollectionProcessor */
     private $collectionProcessor;
-    /**
-     * @var EmployeeSearchResultsInterfaceFactory
-     */
+
+    /** @var EmployeeSearchResultsInterfaceFactory */
     private $employeeSearchResultsFactory;
 
-
-    public function __construct(EmployeeResourceModel $employeeResourceModel,
+    public function __construct(
+        EmployeeResourceModel $employeeResourceModel,
         EmployeeInterfaceFactory $employee,
         CollectionFactory $collectionFactory,
         CollectionProcessor $collectionProcessor,
         EmployeeSearchResultsInterfaceFactory $employeeSearchResults
-    )
-    {
+    ) {
         $this->employeeResourceModel = $employeeResourceModel;
         $this->employeeInterfaceFactory = $employee;
-
         $this->collectionFactory = $collectionFactory;
         $this->collectionProcessor = $collectionProcessor;
         $this->employeeSearchResultsFactory = $employeeSearchResults;
@@ -54,18 +46,30 @@ class EmployeeRepository implements EmployeeRepositoryInterface
 
     public function save(EmployeeInterface $employee): EmployeeInterface
     {
-        return $this->employeeResourceModel->save($employee);
+        try {
+            $this->employeeResourceModel->save($employee);
+        } catch (\Exception $e) {
+            throw new \Exception(__('An error occurred while saving Employee.'));
+        }
+        return $this->getById($employee->getId());
     }
 
     public function delete(EmployeeInterface $employee): bool
     {
-        return $this->employeeResourceModel->delete($employee);
+        try {
+            $this->employeeResourceModel->delete($employee);
+        } catch (\Exception $e) {
+            throw new \Magento\Framework\Exception\StateException(
+                __('The "%1" product couldn\'t be removed.'),
+                $e
+            );
+        }
+        return true;
     }
 
     public function getById(int $employeeId): EmployeeInterface
     {
         $employee = $this->employeeInterfaceFactory->create();
-
         $employee->load($employeeId);
         if (!$employee->getId()) {
             throw new NoSuchEntityException(
@@ -75,12 +79,6 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         return $employee;
     }
 
-    /**
-     * @param $employeeId
-     *
-     * @return bool
-     * @throws NoSuchEntityException
-     */
     public function deleteById(int $employeeId): bool
     {
         $employee = $this->getById($employeeId);
@@ -94,6 +92,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
 
         $this->collectionProcessor->process($searchCriteria, $collection);
         $collection->load();
+
         /** @var EmployeeSearchResultsInterfaceFactory $searchResult */
         $searchResult = $this->employeeSearchResultsFactory->create();
         $searchResult->setSearchCriteria($searchCriteria);
