@@ -8,17 +8,11 @@ class Index extends Action
 {
     private const ADMIN_RESOURCE = 'Advox_Employees::content';
 
-    /**
-     * @return string
-     */
-    public function execute(): string
+    public function execute(): void
     {
         echo "Hello World";
     }
 
-    /**
-     * @return bool
-     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
