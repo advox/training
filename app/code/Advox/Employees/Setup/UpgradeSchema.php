@@ -30,7 +30,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $this->setup = $setup;
             $this->setup->startSetup();
 
-            if (version_compare($context->getVersion(), '1.1.0', '<')) {
+            if (version_compare($context->getVersion(), '1.0.1', '<')) {
                 $this->upgrade110();
             }
         } catch (\Exception $e) {
