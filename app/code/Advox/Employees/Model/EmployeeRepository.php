@@ -15,17 +15,17 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class EmployeeRepository implements EmployeeRepositoryInterface
 {
-    /** @var EmployeeResourceModel */
-    private $employeeResourceModel;
-
-    /** @var EmployeeInterfaceFactory */
-    private $employeeInterfaceFactory;
+    /** @var CollectionProcessor */
+    private $collectionProcessor;
 
     /** @var CollectionFactory */
     private $collectionFactory;
 
-    /** @var CollectionProcessor */
-    private $collectionProcessor;
+    /** @var EmployeeInterfaceFactory */
+    private $employeeInterfaceFactory;
+
+    /** @var EmployeeResourceModel */
+    private $employeeResourceModel;
 
     /** @var EmployeeSearchResultsInterfaceFactory */
     private $employeeSearchResultsFactory;
@@ -51,6 +51,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         } catch (\Exception $e) {
             throw new \Exception(__('An error occurred while saving Employee.'));
         }
+
         return $this->getById($employee->getId());
     }
 
@@ -64,6 +65,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
                 $e
             );
         }
+
         return true;
     }
 
@@ -76,6 +78,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
                 __("The employee that was requested doesn't exist. Verify the employee and try again.")
             );
         }
+
         return $employee;
     }
 
