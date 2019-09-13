@@ -3,14 +3,37 @@
 namespace Advox\Employees\Controller\Adminhtml\Employee;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
 
 class Index extends Action
 {
-    private const ADMIN_RESOURCE = 'Advox_Employees::advox_employee_listing';
+    public const ADMIN_RESOURCE = 'Advox_Employees::advox_employee_listing';
+    /**
+     * @var Context
+     */
+    private $context;
+    /**
+     * @var PageFactory
+     */
+    private $pageFactory;
 
-    public function execute(): void
+    public function __construct(
+        Context $context,
+        PageFactory $pageFactory
+    ) {
+        parent::__construct($context);
+        $this->context = $context;
+        $this->pageFactory = $pageFactory;
+    }
+
+    public function execute()
     {
-        echo "Hello World";
+        /** @var PageFactory $resultPage */
+        $resultPage = $this->pageFactory->create();
+        $resultPage->setActiveMenu('Advox_Employees::advox');
+        $resultPage->getConfig()->getTitle()->prepend(__('Advox Employeee Listing'));
+        return $resultPage;
     }
 
 

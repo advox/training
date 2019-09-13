@@ -9,4 +9,19 @@
 
     <preference for="Advox\Employees\Api\Data\EmployeeSearchResultsInterface"
                 type="Magento\Framework\Api\SearchResults" />
+
+    <virtualType name="Advox\Employees\Model\ResourceModel\Employee\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">advox_employee</argument>
+            <argument name="resourceModel" xsi:type="string">Advox\Employees\Model\ResourceModel\Employee</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="employee_listing_data_source" xsi:type="string">Advox\Employees\Model\ResourceModel\Employee\Collection</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
