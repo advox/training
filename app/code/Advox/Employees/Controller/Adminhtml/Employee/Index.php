@@ -11,11 +11,11 @@ class Index extends Action
 {
     public const ADMIN_RESOURCE = 'Advox_Employees::advox_employee_listing';
 
-    /** @var PageFactory */
-    private $pageFactory;
-
     /** @var EmployeeFactory */
     private $employeeFactory;
+    
+    /** @var PageFactory */
+    private $pageFactory;
 
     public function __construct(
         Context $context,
