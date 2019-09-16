@@ -10,35 +10,31 @@ use Magento\Framework\View\Result\PageFactory;
 class Index extends Action
 {
     public const ADMIN_RESOURCE = 'Advox_Employees::advox_employee_listing';
-    /**
-     * @var Context
-     */
-    private $context;
-    /**
-     * @var PageFactory
-     */
+
+    /** @var PageFactory */
     private $pageFactory;
-    /**
-     * @var EmployeeFactory
-     */
+
+    /** @var EmployeeFactory */
     private $employeeFactory;
 
     public function __construct(
         Context $context,
-        PageFactory $pageFactory,
-        EmployeeFactory $employeeFactory
+        EmployeeFactory $employeeFactory,
+        PageFactory $pageFactory
     ) {
-        parent::__construct($context);
-        $this->context = $context;
         $this->pageFactory = $pageFactory;
         $this->employeeFactory = $employeeFactory;
+
+        parent::__construct($context);
     }
 
     public function execute()
     {
         /** @var PageFactory $resultPage */
         $resultPage = $this->pageFactory->create();
+        $resultPage->setActiveMenu('Advox_Employees::employee_listing');
         $resultPage->getConfig()->getTitle()->prepend(__("Advox Employees Listing"));
+
         return $resultPage;
     }
 
