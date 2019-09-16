@@ -3,6 +3,6 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Advox_Employees::advox" title="Advox" module="Advox_Employees" sortOrder="51" resource="Advox_Employees::content"/>
-        <add id="Advox_Employees::employee_listing" title="Employee listing" module="Advox_Employees" sortOrder="10" action="employee/employee/index" resource="Advox_Employees::advox_employee_listing" parent="Advox_Employees::advox"/>
+        <add id="Advox_Employees::employee_listing" title="Employee listing" module="Advox_Employees" sortOrder="10" action="employees/employee/index" resource="Advox_Employees::advox_employee_listing" parent="Advox_Employees::advox"/>
     </menu>
 </config>
