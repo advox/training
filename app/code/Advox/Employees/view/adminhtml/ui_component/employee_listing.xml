@@ -126,7 +126,7 @@
                 <label translate="true">Updated at</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Advox\Employees\Ui\Component\Listing\Column\EmployeeActions">
+        <actionsColumn name="actions" class="Advox\Employees\Ui\Component\Employee\Listing\form\EmployeeActions">
             <settings>
                 <indexField>id</indexField>
                 <resizeEnabled>false</resizeEnabled>

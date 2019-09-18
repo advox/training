@@ -1,6 +1,6 @@
 <?php
 
-namespace Advox\Employees\Ui\Component\Listing\Column;
+namespace Advox\Employees\Ui\Component\Employee\Listing\form;
 
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -12,11 +12,6 @@ class EmployeeActions extends Column
     const URL_PATH_EDIT = 'employees/employee/edit';
     const URL_PATH_DELETE = 'employees/employee/delete';
 
-    /**
-     * URL builder
-     *
-     * @var \Magento\Framework\UrlInterface
-     */
     protected $urlBuilder;
 
     /**
@@ -37,23 +32,23 @@ class EmployeeActions extends Column
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
-    /**
-     * Prepare Data Source
-     *
-     * @param array $dataSource
-     * @return array
-     */
     public function prepareDataSource(array $dataSource)
     {
-        if (isset($dataSource['data']['items'])) {
-            foreach ($dataSource['data']['items'] as & $item) {
-                if (isset($item['id'])) {
-                    $item[$this->getData('name')] = [
+        if (!isset($dataSource['data']['items'])) {
+            return $dataSource;
+        }
+        foreach ($dataSource['data']['items'] as & $item) {
+            $id = $item['id'] ?? null;
+
+            if (!isset($item['id'])) {
+                continue;
+            }
+            $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_EDIT,
                                 [
-                                    'id' => $item['id']
+                                    'id' => $id
                                 ]
                             ),
                             'label' => __('Edit')
@@ -62,7 +57,7 @@ class EmployeeActions extends Column
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_DELETE,
                                 [
-                                    'id' => $item['id']
+                                    'id' => $id
                                 ]
                             ),
                             'label' => __('Delete'),
@@ -72,8 +67,6 @@ class EmployeeActions extends Column
                             ]
                         ]
                     ];
-                }
-            }
         }
         return $dataSource;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Advox\Employees\Model;
+namespace Advox\Employees\Ui\Component\Employee\Listing\form;
 
 use Advox\Employees\Model\ResourceModel\Employee\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
@@ -68,13 +68,7 @@ class EmployeeProvider extends AbstractDataProvider
         foreach ($items as $page) {
             $this->loadedData[$page->getId()] = $page->getData();
         }
-        $data = $this->dataPersistor->get('module_messages');
-        if (!empty($data)) {
-            $page = $this->collection->getNewEmptyItem();
-            $page->setData($data);
-            $this->loadedData[$page->getId()] = $page->getData();
-            $this->dataPersistor->clear('module_messages');
-        }
+
         return $this->loadedData;
     }
 }

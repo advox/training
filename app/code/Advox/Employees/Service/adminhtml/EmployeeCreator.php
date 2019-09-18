@@ -9,22 +9,27 @@ use Advox\Employees\Api\EmployeeCreatorInterface;
 use Advox\Employees\Api\EmployeeRepositoryInterface;
 use Advox\Employees\Service\adminhtml\Validation\EmployeeValidator;
 use Magento\Framework\ObjectManagerInterface;
-use Zend\Db\Exception\RuntimeException;
 
 class EmployeeCreator implements EmployeeCreatorInterface
 {
+    /** @var ObjectManagerInterface  */
     private $objectManager;
+
     /** @var EmployeeRepositoryInterface */
     private $employeeRepository;
+
     /** @var EmployeeInterfaceFactory */
     private $employeeFactory;
-    /**
-     * @var EmployeeValidator
-     */
+
+    /** @var EmployeeValidator */
     private $employeeValidator;
 
-    public function __construct(EmployeeValidator $employeeValidator, EmployeeInterfaceFactory $employeeFactory, ObjectManagerInterface $objectManager, EmployeeRepositoryInterface $employeeRepository)
-    {
+    public function __construct(
+        EmployeeValidator $employeeValidator,
+        EmployeeInterfaceFactory $employeeFactory,
+        ObjectManagerInterface $objectManager,
+        EmployeeRepositoryInterface $employeeRepository
+    ) {
         $this->objectManager = $objectManager;
         $this->employeeRepository = $employeeRepository;
         $this->employeeFactory = $employeeFactory;

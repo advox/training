@@ -26,7 +26,7 @@
         <settings>
             <submitUrl path="employees/employee/save"/>
         </settings>
-        <dataProvider class="Advox\Employees\Model\EmployeeProvider" name="employee_form_data_source">
+        <dataProvider class="Advox\Employees\Ui\Component\Employee\Listing\form\EmployeeProvider" name="employee_form_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>id</primaryFieldName>

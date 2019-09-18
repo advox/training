@@ -22,7 +22,7 @@ class GenericButton
         $this->employeeRepository = $employeeRepository;
     }
 
-    public function getEmployeeId()
+    public function getEmployeeId():?int
     {
         if (null === $this->context->getRequest()->getParam('id')) {
             return null;
