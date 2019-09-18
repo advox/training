@@ -4,6 +4,12 @@ namespace Advox\Employees\Api\Data;
 
 interface EmployeeInterface
 {
+    public const REQUIRE = [
+        self::NAME,
+        self::POSITION,
+        self::PESEL,
+    ];
+
     public const TABLE_NAME = 'advox_employee';
 
     public const ID = 'id';
