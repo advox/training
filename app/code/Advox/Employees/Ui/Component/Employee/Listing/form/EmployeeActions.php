@@ -40,7 +40,7 @@ class EmployeeActions extends Column
         foreach ($dataSource['data']['items'] as & $item) {
             $id = $item['id'] ?? null;
 
-            if (!isset($item['id'])) {
+            if (!isset($id)) {
                 continue;
             }
             $item[$this->getData('name')] = [
