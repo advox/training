@@ -9,6 +9,7 @@ class Add extends Employee
     public function execute()
     {
         $resultForward = $this->resultForwardFactory->create();
+
         return $resultForward->forward('edit');
     }
 }
