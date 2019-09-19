@@ -13,7 +13,7 @@ class Delete extends Employee
         $resultRedirect = $this->resultRedirectFactory->create();
 
         try {
-            $employee = $this->employeeCreator->create(['id' => (int)$this->getRequest()->getParam('id')]);
+            $employee = $this->employeeRepository->getById(((int)$this->getRequest()->getParam('id')));
             $this->employeeRepository->delete($employee);
             $this->messageManager->addSuccessMessage(__('The data has been deleted.'));
             $resultRedirect->setPath('employees/employee/index');

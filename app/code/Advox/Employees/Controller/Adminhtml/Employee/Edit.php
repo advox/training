@@ -12,9 +12,9 @@ class Edit extends EmployeeController
         $employeeId = $this->getRequest()->getParam('id');
 
         if ($employeeId) {
-            $model = $this->employeeCreator->create(['id' => (int)$this->getRequest()->getParam('id')]);
+            $model = $this->employeeRepository->getById($employeeId);
 
-            if (!$model->getName()) {
+            if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This page no longer exists.'));
                 /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();

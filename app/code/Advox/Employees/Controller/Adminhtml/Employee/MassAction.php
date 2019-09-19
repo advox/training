@@ -3,7 +3,6 @@
 namespace Advox\Employees\Controller\Adminhtml\Employee;
 
 use Advox\Employees\Api\EmployeeCreatorInterface;
-use Advox\Employees\Service\adminhtml\EmployeeCreator;
 use Advox\Employees\Api\EmployeeRepositoryInterface;
 use Advox\Employees\Controller\Adminhtml\Employee;
 use Advox\Employees\Model\Employee as EmployeeModel;
@@ -12,7 +11,6 @@ use Advox\Employees\Model\ResourceModel\Employee\CollectionFactory;
 use Exception;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\ForwardFactory;
-use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Ui\Component\MassAction\Filter;
@@ -75,15 +73,8 @@ abstract class MassAction extends Employee
         parent::__construct($employeeRepository, $resultPageFactory, $resultForwardFactory, $context, $employeeCreator);
     }
 
-    /**
-     * @param EmployeeModel $data
-     * @return mixed
-     */
     abstract protected function massAction(EmployeeModel $data);
 
-    /**
-     * @return Redirect
-     */
     public function execute()
     {
         try {
