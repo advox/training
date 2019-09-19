@@ -9,7 +9,7 @@ class MassDelete extends MassAction
     protected function massAction(Employee $data)
     {
         $this->employeeRepository->delete($data);
-        $this->successMessage = 'Deletion Successful.';
+        $this->successMessage = __('Deletion Successful.');
         $resultRedirect = $this->resultRedirectFactory->create();
         return $resultRedirect->setPath('*/*/');
     }

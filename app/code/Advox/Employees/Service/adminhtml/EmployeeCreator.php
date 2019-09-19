@@ -12,9 +12,6 @@ use Magento\Framework\ObjectManagerInterface;
 
 class EmployeeCreator implements EmployeeCreatorInterface
 {
-    /** @var ObjectManagerInterface  */
-    private $objectManager;
-
     /** @var EmployeeRepositoryInterface */
     private $employeeRepository;
 
@@ -27,10 +24,8 @@ class EmployeeCreator implements EmployeeCreatorInterface
     public function __construct(
         EmployeeValidator $employeeValidator,
         EmployeeInterfaceFactory $employeeFactory,
-        ObjectManagerInterface $objectManager,
         EmployeeRepositoryInterface $employeeRepository
     ) {
-        $this->objectManager = $objectManager;
         $this->employeeRepository = $employeeRepository;
         $this->employeeFactory = $employeeFactory;
         $this->employeeValidator = $employeeValidator;
@@ -44,12 +39,12 @@ class EmployeeCreator implements EmployeeCreatorInterface
             $model = $this->employeeRepository->getById($id);
         } else {
             unset($data['id']);
-            $this->employeeValidator->validate($data);
             /** @var EmployeeInterface $model */
             $model = $this->employeeFactory->create();
         }
 
         $model->setData($data);
+        $this->employeeValidator->validate($data);
         return $this->employeeRepository->save($model);
     }
 }

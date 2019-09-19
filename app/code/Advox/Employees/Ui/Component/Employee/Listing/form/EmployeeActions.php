@@ -2,6 +2,7 @@
 
 namespace Advox\Employees\Ui\Component\Employee\Listing\form;
 
+use Advox\Employees\Service\EmployeeService;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
@@ -9,18 +10,8 @@ use Magento\Ui\Component\Listing\Columns\Column;
 
 class EmployeeActions extends Column
 {
-    const URL_PATH_EDIT = 'employees/employee/edit';
-    const URL_PATH_DELETE = 'employees/employee/delete';
-
     protected $urlBuilder;
 
-    /**
-     * @param ContextInterface $context
-     * @param UiComponentFactory $uiComponentFactory
-     * @param UrlInterface $urlBuilder
-     * @param array $components
-     * @param array $data
-     */
     public function __construct(
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
@@ -46,7 +37,7 @@ class EmployeeActions extends Column
             $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
-                                static::URL_PATH_EDIT,
+                                EmployeeService::URL_PATH_EDIT,
                                 [
                                     'id' => $id
                                 ]
@@ -55,7 +46,7 @@ class EmployeeActions extends Column
                         ],
                         'delete' => [
                             'href' => $this->urlBuilder->getUrl(
-                                static::URL_PATH_DELETE,
+                                EmployeeService::URL_PATH_DELETE,
                                 [
                                     'id' => $id
                                 ]

@@ -8,27 +8,15 @@ use Magento\Ui\DataProvider\AbstractDataProvider;
 
 class EmployeeProvider extends AbstractDataProvider
 {
-    /**
-     * @var ResourceModel\Employee\Collection
-     */
+    /** @var CollectionFactory */
     protected $collection;
-    /**
-     * @var DataPersistorInterface
-     */
+
+    /** @var DataPersistorInterface */
     protected $dataPersistor;
-    /**
-     * @var array
-     */
+
+    /** @var array */
     protected $loadedData;
-    /**
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
-     * @param CollectionFactory $pageCollectionFactory
-     * @param DataPersistorInterface $dataPersistor
-     * @param array $meta
-     * @param array $data
-     */
+
     public function __construct(
         $name,
         $primaryFieldName,

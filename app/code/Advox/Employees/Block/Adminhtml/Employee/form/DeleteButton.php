@@ -2,6 +2,7 @@
 
 namespace Advox\Employees\Block\Adminhtml\Employee\form;
 
+use Advox\Employees\Service\EmployeeService;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 class DeleteButton extends GenericButton implements ButtonProviderInterface
@@ -24,6 +25,6 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
 
     public function getDeleteUrl(): string
     {
-        return $this->getUrl('*/*/delete', ['id' => $this->getEmployeeId()]);
+        return $this->getUrl(EmployeeService::URL_PATH_DELETE, ['id' => $this->getEmployeeId()]);
     }
 }

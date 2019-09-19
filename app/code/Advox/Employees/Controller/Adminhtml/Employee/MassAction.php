@@ -8,6 +8,7 @@ use Advox\Employees\Controller\Adminhtml\Employee;
 use Advox\Employees\Model\Employee as EmployeeModel;
 use Advox\Employees\Model\EmployeeRepository;
 use Advox\Employees\Model\ResourceModel\Employee\CollectionFactory;
+use Advox\Employees\Service\EmployeeService;
 use Exception;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\ForwardFactory;
@@ -90,7 +91,7 @@ abstract class MassAction extends Employee
             $this->messageManager->addExceptionMessage($e, __($this->errorMessage));
         }
         $redirectResult = $this->resultRedirectFactory->create();
-        $redirectResult->setPath('employees/employee/index');
+        $redirectResult->setPath(EmployeeService::URL_PATH_INDEX);
         return $redirectResult;
     }
 }

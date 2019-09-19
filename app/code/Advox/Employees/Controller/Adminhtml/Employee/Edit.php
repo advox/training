@@ -4,6 +4,7 @@ namespace Advox\Employees\Controller\Adminhtml\Employee;
 
 use Advox\Employees\Controller\Adminhtml\Employee as EmployeeController;
 use Advox\Employees\Model\Employee;
+use Magento\Backend\Model\View\Result\Redirect;
 
 class Edit extends EmployeeController
 {
@@ -16,7 +17,7 @@ class Edit extends EmployeeController
 
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This page no longer exists.'));
-                /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+                /** @var Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();
                 return $resultRedirect->setPath('*/*/');
             }

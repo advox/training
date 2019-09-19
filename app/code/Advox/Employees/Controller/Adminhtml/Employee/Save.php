@@ -6,6 +6,7 @@ use Advox\Employees\Api\Data\EmployeeInterfaceFactory;
 use Advox\Employees\Controller\Adminhtml\Employee;
 use Advox\Employees\Model\EmployeeRepository;
 use Advox\Employees\Service\adminhtml\EmployeeCreator;
+use Advox\Employees\Service\EmployeeService;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\ForwardFactory;
 use Magento\Framework\Controller\ResultInterface;
@@ -41,11 +42,11 @@ class Save extends Employee
         $data = $this->getRequest()->getPostValue();
         $resultRedirect = $this->resultRedirectFactory->create();
         try {
-            $this->employeeCreator->create($data);
+            $model = $this->employeeCreator->create($data);
             $this->messageManager->addSuccessMessage(__('You saved this data.'));
             $this->_getSession()->setFormData(false);
             if ($this->getRequest()->getParam('back')) {
-                return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId(), '_current' => true]);
+                return $resultRedirect->setPath(EmployeeService::URL_PATH_EDIT, ['id' => $model->getId(), '_current' => true]);
             }
             return $resultRedirect->setPath('*/*/');
         } catch (LocalizedException | \RuntimeException $e) {
