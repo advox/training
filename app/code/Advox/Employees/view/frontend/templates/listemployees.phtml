@@ -1,0 +1,23 @@
+<?php $employees = $this->getListEmployees() ?>
+<?php if ($employees && count($employees)): ?>
+<table style="width:100%">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Pesel</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+    </tr>
+    <?php foreach ($employees as $employee): ?>
+    <tr>
+        <td><?php echo $employee->getId(); ?></td>
+        <td><?php echo $employee->getName(); ?></td>
+        <td><?php echo $employee->getPosition(); ?></td>
+        <td><?php echo $employee->getPesel(); ?></td>
+        <td><?php echo $employee->getCreatedAt(); ?></td>
+        <td><?php echo $employee->getUpdatedAt(); ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<?php endif; ?>
