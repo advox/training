@@ -53,8 +53,8 @@ class EmployeeActions extends Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "${ $.$data.data_name }"'),
-                                'message' => __('Are you sure you want to delete the Data: "${ $.$data.data_name }"?')
+                                'title' => __('Delete "${ $.$data.name }"'),
+                                'message' => __('Are you sure you want to delete the Data: "${ $.$data.name }"?')
                             ]
                         ]
                     ];
