@@ -22,7 +22,7 @@ class Save extends Employee
     protected $dataFactory;
 
     public function __construct(
-        EmployeeRepository $dataRepository,
+        EmployeeRepository $employeeRepository,
         PageFactory $resultPageFactory,
         ForwardFactory $resultForwardFactory,
         Manager $messageManager,
@@ -32,8 +32,8 @@ class Save extends Employee
     ) {
         $this->messageManager   = $messageManager;
         $this->dataFactory      = $dataFactory;
-        $this->dataRepository   = $dataRepository;
-        parent::__construct($dataRepository, $resultPageFactory, $resultForwardFactory, $context, $employeeCreator);
+        $this->dataRepository   = $employeeRepository;
+        parent::__construct($employeeRepository, $resultPageFactory, $resultForwardFactory, $context, $employeeCreator);
     }
 
     public function execute()
