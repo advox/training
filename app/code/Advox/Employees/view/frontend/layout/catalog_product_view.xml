@@ -1,0 +1,8 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="columns.top">
+            <block class="Magento\Catalog\Block\Product\View\Description" name="manufacturer" template="Advox_Employees::product/manufacturer.phtml" after="product.main.title"/>
+        </referenceContainer>
+    </body>
+</page>
