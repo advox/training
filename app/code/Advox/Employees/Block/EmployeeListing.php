@@ -26,7 +26,6 @@ class EmployeeListing extends Template
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
     }
 
-    /** @return AbstractExtensibleObject[] */
     public function getListEmployees(): array
     {
         return $this->employeeRepository->getList($this->searchCriteriaBuilder->create())->getItems();

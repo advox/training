@@ -6,19 +6,19 @@ use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\UpgradeDataInterface;
+
 use Psr\Log\LoggerInterface;
 
 class UpgradeData implements UpgradeDataInterface
 {
+    /** @var EavSetupFactory */
+    private $eavSetupFactory;
+
     /** @var LoggerInterface */
     private $logger;
 
     /** @var ModuleDataSetupInterface */
     private $setup;
-    /**
-     * @var EavSetupFactory
-     */
-    private $eavSetupFactory;
 
     public function __construct(
         LoggerInterface $logger,
