@@ -4,7 +4,7 @@ namespace Advox\Employees\Api\Data;
 
 interface EmployeeAttributesInterface
 {
-    public const MANUFACTURER_ATTRIBUTES_CODE = 'manufactasdurer11';
+    public const MANUFACTURER_ATTRIBUTES_CODE = 'manufacturer';
 
-    public const MANUFACTURER_ATTRIBUTE_LABEL = 'manufactasddurer22';
+    public const MANUFACTURER_ATTRIBUTE_LABEL = 'Manufacturer';
 }

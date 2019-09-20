@@ -23,6 +23,10 @@ class UpgradeData implements UpgradeDataInterface
      * @var EavSetupFactory
      */
     private $eavSetupFactory;
+    /**
+     * @var \Magento\Eav\Setup\EavSetup
+     */
+    private $eavSetup;
 
     public function __construct(
         LoggerInterface $logger,
@@ -37,10 +41,14 @@ class UpgradeData implements UpgradeDataInterface
         try {
             $this->setup = $setup;
             $this->setup->startSetup();
+            $this->eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+
+            if (version_compare($context->getVersion(), '1.1.0', '<')) {
+                $this->upgrade110();
+            }
 
             if (version_compare($context->getVersion(), '1.2.0', '<')) {
-                $this->upgrade110();
-                $this->upgrade120($setup);
+                $this->upgrade120();
             }
         } catch (Exception $e) {
             $this->logger->error($e->getMessage());
@@ -52,17 +60,16 @@ class UpgradeData implements UpgradeDataInterface
     {
     }
 
-    private function upgrade120(ModuleDataSetupInterface $setup): void
+    private function upgrade120(): void
     {
         $attributeCode = EmployeeAttributesInterface::MANUFACTURER_ATTRIBUTES_CODE;
-        $attributeId = $this->eavSetupFactory->create()->getAttributeId(Product::ENTITY, $attributeCode);
+        $attributeId = $this->eavSetup->getAttributeId(Product::ENTITY, $attributeCode);
 
-        if (null !== $attributeId) {
+        if (false !== $attributeId) {
             return;
         }
 
-        $eav = $this->eavSetupFactory->create(['setup' => $setup]);
-        $eav->addAttribute(
+        $this->eavSetup->addAttribute(
             Product::ENTITY,
             $attributeCode,
             [
