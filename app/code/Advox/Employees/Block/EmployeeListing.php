@@ -3,38 +3,36 @@
 namespace Advox\Employees\Block;
 
 use Advox\Employees\Model\EmployeeRepository;
+use Magento\Framework\Api\AbstractExtensibleObject;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 
 class EmployeeListing extends Template
 {
+    /** @param EmployeeRepository $employeeRepository */
     private $employeeRepository;
 
-    private $criteriaBuilder;
+    /** @param SearchCriteriaBuilder $searchCriteriaBuilder */
+    private $searchCriteriaBuilder;
 
     public function __construct(
-    Context $context,
-    EmployeeRepository $employeeRepository,
-    SearchCriteriaBuilder $criteriaBuilder
-
+        Context $context,
+        EmployeeRepository $employeeRepository,
+        SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         parent::__construct($context);
         $this->employeeRepository = $employeeRepository;
-        $this->criteriaBuilder = $criteriaBuilder;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
     }
 
-    public function getBaseUrl()
+    /** @return AbstractExtensibleObject[] */
+    public function getListEmployees(): array
     {
-        return $this->_storeManager->getStore()->getBaseUrl();
+        return $this->employeeRepository->getList($this->searchCriteriaBuilder->create())->getItems();
     }
 
-    public function getListEmployees()
-    {
-        return $this->employeeRepository->getList($this->criteriaBuilder->create())->getItems();
-    }
-
-    protected function _prepareLayout()
+    protected function _prepareLayout(): self
     {
         parent::_prepareLayout();
         $this->pageConfig->getTitle()->set(__('Employee Listing'));

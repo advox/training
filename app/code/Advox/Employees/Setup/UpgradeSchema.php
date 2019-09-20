@@ -9,7 +9,6 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\UpgradeSchemaInterface;
 use Psr\Log\LoggerInterface;
-use Zend_Db_Exception;
 
 class UpgradeSchema implements UpgradeSchemaInterface
 {

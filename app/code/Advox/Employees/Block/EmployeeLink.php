@@ -3,20 +3,11 @@
 namespace Advox\Employees\Block;
 
 use Magento\Framework\View\Element\Template;
-use Magento\Framework\View\Element\Template\Context;
 
 class EmployeeLink extends Template
 {
-    private $employeeHelper;
-
-    public function __construct(
-        Context $context
-    ) {
-        parent::__construct($context);
-    }
-
-    public function getBaseUrl()
+    public function getEmployeesIndexUrl(): string
     {
-        return $this->_storeManager->getStore()->getBaseUrl();
+        return $this->getBaseUrl() . "/employees/index/index";
     }
 }

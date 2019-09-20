@@ -1,13 +1,14 @@
-<?php $employees = $this->getListEmployees() ?>
+<?php /** $var Advox\Employees\Block\EmployeeListing $this */ ?>
+<?php $employees = $this->getListEmployees(); ?>
 <?php if ($employees && count($employees)): ?>
 <table style="width:100%">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Pesel</th>
-        <th>Created At</th>
-        <th>Updated At</th>
+        <th><?php echo __('ID'); ?></th>
+        <th><?php echo __('Name'); ?></th>
+        <th><?php echo __('Position'); ?></th>
+        <th><?php echo __('Pesel'); ?></th>
+        <th><?php echo __('Created At'); ?></th>
+        <th><?php echo __('Updated At'); ?></th>
     </tr>
     <?php foreach ($employees as $employee): ?>
     <tr>
