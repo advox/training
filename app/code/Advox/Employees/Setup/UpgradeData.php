@@ -6,6 +6,7 @@ use Advox\Employees\Api\Data\EmployeeAttributesInterface;
 use Exception;
 use Magento\Catalog\Model\Product;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
+use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -19,13 +20,11 @@ class UpgradeData implements UpgradeDataInterface
 
     /** @var ModuleDataSetupInterface */
     private $setup;
-    /**
-     * @var EavSetupFactory
-     */
+
+    /** @var EavSetupFactory */
     private $eavSetupFactory;
-    /**
-     * @var \Magento\Eav\Setup\EavSetup
-     */
+
+    /** @var EavSetup */
     private $eavSetup;
 
     public function __construct(
@@ -62,7 +61,7 @@ class UpgradeData implements UpgradeDataInterface
 
     private function upgrade120(): void
     {
-        $attributeCode = EmployeeAttributesInterface::MANUFACTURER_ATTRIBUTES_CODE;
+        $attributeCode = EmployeeAttributesInterface::MANUFACTURER_ATTRIBUTE_CODE;
         $attributeId = $this->eavSetup->getAttributeId(Product::ENTITY, $attributeCode);
 
         if (false !== $attributeId) {
