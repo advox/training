@@ -10,10 +10,10 @@ use Magento\Framework\View\Element\Template\Context;
 
 class EmployeeListing extends Template
 {
-    /** @param EmployeeRepository $employeeRepository */
+    /** @var EmployeeRepository */
     private $employeeRepository;
 
-    /** @param SearchCriteriaBuilder $searchCriteriaBuilder */
+    /** @var EmployeeRepository */
     private $searchCriteriaBuilder;
 
     public function __construct(
