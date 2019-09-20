@@ -55,11 +55,12 @@ class UpgradeData implements UpgradeDataInterface
     private function upgrade120(ModuleDataSetupInterface $setup): void
     {
         $attributeCode = EmployeeAttributesInterface::MANUFACTURER_ATTRIBUTES_CODE;
-        $attributeId = $this->eavSetupFactory->getAttributeId(Product::ENTITY, $attributeCode);
+        $attributeId = $this->eavSetupFactory->create()->getAttributeId(Product::ENTITY, $attributeCode);
+
 
         $eav = $this->eavSetupFactory->create(['setup' => $setup]);
         $eav->addAttribute(
-            $attributeId,
+            Product::ENTITY,
             $attributeCode,
             [
                 'group' => 'General',
