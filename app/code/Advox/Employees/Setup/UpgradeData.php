@@ -57,6 +57,9 @@ class UpgradeData implements UpgradeDataInterface
         $attributeCode = EmployeeAttributesInterface::MANUFACTURER_ATTRIBUTES_CODE;
         $attributeId = $this->eavSetupFactory->create()->getAttributeId(Product::ENTITY, $attributeCode);
 
+        if (null !== $attributeId) {
+            return;
+        }
 
         $eav = $this->eavSetupFactory->create(['setup' => $setup]);
         $eav->addAttribute(
