@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace Advox\Employees\Setup;
 
 use Advox\Employees\Api\Data\EmployeeAttributesInterface;
-use Exception;
 use Magento\Catalog\Model\Product;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetup;
@@ -49,7 +48,7 @@ class UpgradeData implements UpgradeDataInterface
             if (version_compare($context->getVersion(), '1.2.0', '<')) {
                 $this->upgrade120();
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
         } finally {
             $this->setup->endSetup();
