@@ -2,8 +2,8 @@
 
 namespace Advox\Employees\Block;
 
+use Advox\Employees\Api\EmployeeRepositoryInterface;
 use Advox\Employees\Model\EmployeeRepository;
-use Magento\Framework\Api\AbstractExtensibleObject;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
@@ -13,12 +13,12 @@ class EmployeeListing extends Template
     /** @var EmployeeRepository */
     private $employeeRepository;
 
-    /** @var EmployeeRepository */
+    /** @var SearchCriteriaBuilder */
     private $searchCriteriaBuilder;
 
     public function __construct(
         Context $context,
-        EmployeeRepository $employeeRepository,
+        EmployeeRepositoryInterface $employeeRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         parent::__construct($context);
