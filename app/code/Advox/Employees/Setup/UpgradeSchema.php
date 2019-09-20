@@ -9,7 +9,6 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\UpgradeSchemaInterface;
 use Psr\Log\LoggerInterface;
-use Zend_Db_Exception;
 
 class UpgradeSchema implements UpgradeSchemaInterface
 {
@@ -30,7 +29,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $this->setup = $setup;
             $this->setup->startSetup();
 
-            if (version_compare($context->getVersion(), '1.0.1', '<')) {
+            if (version_compare($context->getVersion(), '1.1.0', '<')) {
                 $this->upgrade101();
             }
         } catch (\Exception $e) {

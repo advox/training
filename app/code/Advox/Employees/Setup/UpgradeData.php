@@ -2,13 +2,18 @@
 declare(strict_types=1);
 namespace Advox\Employees\Setup;
 
+use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\UpgradeDataInterface;
+
 use Psr\Log\LoggerInterface;
 
 class UpgradeData implements UpgradeDataInterface
 {
+    /** @var EavSetupFactory */
+    private $eavSetupFactory;
+
     /** @var LoggerInterface */
     private $logger;
 
@@ -16,9 +21,11 @@ class UpgradeData implements UpgradeDataInterface
     private $setup;
 
     public function __construct(
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        EavSetupFactory $eavSetupFactory
     ) {
         $this->logger = $logger;
+        $this->eavSetupFactory = $eavSetupFactory;
     }
 
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context): void
@@ -36,5 +43,7 @@ class UpgradeData implements UpgradeDataInterface
             $this->setup->endSetup();
         }
     }
-    private function upgrade110(): void {}
+    private function upgrade110(): void
+    {
+    }
 }

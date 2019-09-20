@@ -108,7 +108,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
     {
         /** @var EmployeeInterface $employee */
         $employee = $this->getById($employeeId);
-        
+
         return $this->delete($employee);
     }
 

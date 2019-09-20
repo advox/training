@@ -1,0 +1,24 @@
+<?php /** $var Advox\Employees\Block\EmployeeListing $this */ ?>
+<?php $employees = $this->getListEmployees(); ?>
+<?php if ($employees && count($employees)): ?>
+<table style="width:100%">
+    <tr>
+        <th><?php echo __('ID'); ?></th>
+        <th><?php echo __('Name'); ?></th>
+        <th><?php echo __('Position'); ?></th>
+        <th><?php echo __('Pesel'); ?></th>
+        <th><?php echo __('Created At'); ?></th>
+        <th><?php echo __('Updated At'); ?></th>
+    </tr>
+    <?php foreach ($employees as $employee): ?>
+    <tr>
+        <td><?php echo $employee->getId(); ?></td>
+        <td><?php echo $employee->getName(); ?></td>
+        <td><?php echo $employee->getPosition(); ?></td>
+        <td><?php echo $employee->getPesel(); ?></td>
+        <td><?php echo $employee->getCreatedAt(); ?></td>
+        <td><?php echo $employee->getUpdatedAt(); ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<?php endif; ?>
