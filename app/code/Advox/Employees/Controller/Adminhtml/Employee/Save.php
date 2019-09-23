@@ -5,7 +5,7 @@ namespace Advox\Employees\Controller\Adminhtml\Employee;
 use Advox\Employees\Api\Data\EmployeeInterfaceFactory;
 use Advox\Employees\Controller\Adminhtml\Employee;
 use Advox\Employees\Model\EmployeeRepository;
-use Advox\Employees\Service\adminhtml\EmployeeCreator;
+use Advox\Employees\Service\Adminhtml\EmployeeCreator;
 use Advox\Employees\Service\EmployeeService;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\ForwardFactory;
