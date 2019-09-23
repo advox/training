@@ -4,5 +4,5 @@
     <menu>
         <add id="Advox_Employees::advox" title="Advox" module="Advox_Employees" sortOrder="51" resource="Advox_Employees::content"/>
         <add id="Advox_Employees::employee_listing" title="Employee listing" module="Advox_Employees" sortOrder="10" action="employees/employee/index" resource="Advox_Employees::advox_employee_listing" parent="Advox_Employees::advox"/>
-    </menu>
+        <add id="Magento_Catalog::catalog_productstest" title="Products1" translate="title" module="Advox_Employees" sortOrder="10" parent="Magento_Catalog::inventory" action="catalog/product/" resource="Magento_Catalog::products"/>    </menu>
 </config>
