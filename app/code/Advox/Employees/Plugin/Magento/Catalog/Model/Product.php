@@ -1,11 +1,12 @@
 <?php
 
-namespace Advox\Employees\Plugin;
+namespace Advox\Employees\Plugin\Magento\Catalog\Model;
 
 use Advox\Employees\Api\ConfigurationReaderInterface;
+use Advox\Employees\Api\Data\ProductInterfacePlugin;
 use Magento\Catalog\Api\Data\ProductInterface;
 
-class Manufacturer
+class Product implements ProductInterfacePlugin
 {
     /** @var ConfigurationReaderInterface */
     private $configurationReader;
@@ -15,7 +16,7 @@ class Manufacturer
         $this->configurationReader = $configurationReader;
     }
 
-    public function afterGetName(ProductInterface $subject, $name)
+    public function afterGetName(ProductInterface $subject, $name): string
     {
         $manufacturer = $subject->getManufacturer();
 

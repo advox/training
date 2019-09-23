@@ -11,7 +11,8 @@
                 type="Advox\Employees\Model\EmployeeRepository"/>
 
     <type name="Magento\Catalog\Api\Data\ProductInterface">
-        <plugin name="advox_manufacturer_plugin" type="Advox\Employees\Plugin\Manufacturer" sortOrder="10" disabled="false"  />
+        <plugin name="advox_manufacturer_plugin_magento_catalog_model_product"
+                type="Advox\Employees\Plugin\Magento\Catalog\Model\Product" sortOrder="10" disabled="false"  />
     </type>
 
     <preference for="Advox\Employees\Api\Data\EmployeeSearchResultsInterface"
