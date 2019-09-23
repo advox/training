@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Advox\Employees\Service\adminhtml;
+namespace Advox\Employees\Service\Adminhtml;
 
 use Advox\Employees\Api\Data\EmployeeInterface;
 use Advox\Employees\Api\Data\EmployeeInterfaceFactory;
 use Advox\Employees\Api\EmployeeCreatorInterface;
 use Advox\Employees\Api\EmployeeRepositoryInterface;
-use Advox\Employees\Service\adminhtml\Validation\EmployeeValidator;
+use Advox\Employees\Service\Adminhtml\Validation\EmployeeValidator;
 use Magento\Framework\ObjectManagerInterface;
 
 class EmployeeCreator implements EmployeeCreatorInterface

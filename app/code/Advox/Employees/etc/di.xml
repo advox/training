@@ -10,6 +10,9 @@
     <preference for="Advox\Employees\Api\Data\EmployeeSearchResultsInterface"
                 type="Magento\Framework\Api\SearchResults" />
 
+    <preference for="Advox\Employees\Api\ConfigurationReaderInterface"
+                type="Advox\Employees\Service\ConfigurationReader" />
+
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

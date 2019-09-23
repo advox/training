@@ -2,7 +2,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="product.info.main">
-            <block class="Magento\Catalog\Block\Product\View\Description" name="manufacturer" template="Advox_Employees::product/manufacturer.phtml"/>
+            <block ifconfig="catalog/manufacturer/visibility" class="Magento\Catalog\Block\Product\View\Description" name="manufacturer" template="Advox_Employees::product/manufacturer.phtml"/>
         </referenceContainer>
     </body>
 </page>

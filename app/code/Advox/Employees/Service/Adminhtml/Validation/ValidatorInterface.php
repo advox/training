@@ -1,6 +1,6 @@
 <?php
 
-namespace Advox\Employees\Service\adminhtml\Validation;
+namespace Advox\Employees\Service\Adminhtml\Validation;
 
 interface ValidatorInterface
 {
